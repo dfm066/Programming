@@ -1,0 +1,48 @@
+void main()
+{
+	int x,y,k,no,dig[5],i=1,count=1;
+	clrscr();
+	printf("\n Enter No :");
+	scanf("%d",&no);
+	clrscr();
+	while(no>0)
+	{
+	  dig[i]=no%10;
+	  no/=10;
+	  i++;
+	  count++;
+
+	}
+	for(x=1;x<=5;x++)
+	{
+		for(i=count;i>=1;i--)
+		{
+			for(y=1;y<=5;y++)
+			{
+				switch(dig[i])
+				{
+					case 1:if(y==3||(x==5&&(y>=2&&y<=4))||(x==2&&(y==2||y==3)))
+						 printf("*");
+						else
+						 printf(" ");
+						break;
+					case 2:if(x==1||x==3||x==5||(y==5&&x<=3)||(y==1&&x>3))
+						printf("*");
+					       else
+						printf(" ");
+					       break;
+					case 8:if(x==1||y==1||x==3||y==5||x==5)
+						printf("*");
+					       else
+						printf(" ");
+						break;
+
+				}
+
+
+			}
+		}
+			printf("\n");
+	}
+	getch();
+}

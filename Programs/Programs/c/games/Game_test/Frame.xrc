@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc">
+	<object class="wxFrame" name="Frame">
+		<title>Frame</title>
+		<centered>1</centered>
+		<size>575,495</size>
+		<fg>wxSYS_COLOUR_INACTIVECAPTIONTEXT</fg>
+		<bg>wxSYS_COLOUR_ACTIVECAPTION</bg>
+		<object class="wxGauge" name="ID_GAUGE1">
+			<pos>0,8</pos>
+			<size>576,28</size>
+		</object>
+		<object class="wxAnimationCtrl" name="ID_ANIMATIONCTRL2">
+			<pos>544,40</pos>
+			<size>28,20</size>
+			<fg>wxSYS_COLOUR_INACTIVEBORDER</fg>
+			<bg>wxSYS_COLOUR_BTNSHADOW</bg>
+		</object>
+	</object>
+</resource>

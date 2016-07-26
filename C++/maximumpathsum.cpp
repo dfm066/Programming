@@ -24,27 +24,33 @@ void tokenize(const string& str,
         pos = str.find_first_of(delimiters, lastPos);
     }
 }
-int main(){	
-	ifstream in("in.txt");
+int main(){
+	ifstream in;
 	string line;
 	vector<vector<int>> mat;
 	vector<int> row;
 	vector<string> num;
+	cout<<"Enter filename : ";
+	cin>>line;
+	in.open(line);
 	while(!in.eof()){
 		getline(in,line);
 		tokenize(line,num);
 		for(auto i:num)
 			row.push_back(stoi(i));
-		
 		mat.push_back(row);
 		num.clear();
 		row.clear();
 	}
-	for(auto r:mat){
-		for(auto c:r){
-			cout<< c << " ";
+	cout<<"Maximum Path sum : ";
+	for(int r = mat.size()-3; r >= 0; r--){
+		for(int c = 0; c < mat[r].size(); c++){
+			if(mat[r+1][c]>mat[r+1][c+1])
+                mat[r][c]+= mat[r+1][c];
+            else
+                mat[r][c]+= mat[r+1][c+1];
 		}
-		cout<< endl;
 	}
+	cout<<mat[0][0]<<endl;
 	return 0;
 }

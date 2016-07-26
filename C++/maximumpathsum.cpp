@@ -24,22 +24,6 @@ void tokenize(const string& str,
         pos = str.find_first_of(delimiters, lastPos);
     }
 }
-
-/*
-for(i = 0; i < 15; i++){	
-		for(j = 0; j < i; j++){
-			cin>>row[j];
-		}
-		mat.push_back(row);
-		row.clear();
-	}
-	for(i = 0; i < 15; i++){
-		for(j = 0; j < i; j++){
-			cout << mat[i][j] << " ";
-		}
-		cout<<endl;
-	}
-*/
 int main(){	
 	ifstream in("in.txt");
 	string line;

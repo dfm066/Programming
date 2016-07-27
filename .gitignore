@@ -12,6 +12,11 @@ $RECYCLE.BIN/
 # Windows executables and object files
 *.exe
 *.o
+*.bin
+
+#IDE
+.idea/*
+.project
 
 # Windows Installer files
 *.cab

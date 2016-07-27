@@ -20,8 +20,26 @@ abundantNums = []
 for i in range(12,28123):
     if abundant(i):
         abundantNums.append(i)
-
-cnt = len(abundantNums)
-num = (cnt*(cnt-1))//2
-print(num)
+abundantNums.sort()
+print(abundantNums,len(abundantNums),sep='\n')
+cnt = 0
+x = 0
+sumOfAbundant = []
+for i in abundantNums:
+    if i > 28111:
+        break
+    for j in abundantNums[x:]:
+        if i+j > 28123:
+             break
+        elif i+j ==28123:
+            print(i,j)
+        cnt += 1
+        sumOfAbundant.append(i+j)
+    x += 1
+sumOfAbundant = set(sumOfAbundant)
+nonAbundantSum =[]
+for i in range(1,28124):
+    if i not in sumOfAbundant:
+        nonAbundantSum.append(i)
+print(sum(nonAbundantSum))
 

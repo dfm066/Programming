@@ -1,0 +1,1 @@
+def abundant(num)->int:

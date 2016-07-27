@@ -15,6 +15,7 @@ def divisorSum(n) -> int:
             div.append(n//i)
     divSum = sum(div)
     return divSum
+
 def main():
     amicableNum = []
     for i in range(1,10001):

@@ -1,15 +1,7 @@
 import math
 import time
 
-def divisor(n) -> int:
-    if (math.sqrt(n) % 1 == 0):
-        div = 3
-    else:
-        div = 2
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0 and n / i > i:
-            div += 2
-    return div
+
 
 
 # print("No of divisors : {0}".format(divisor(31351320)))

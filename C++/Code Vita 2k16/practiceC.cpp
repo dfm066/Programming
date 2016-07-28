@@ -12,8 +12,8 @@ int main(){
         t  = (x*va+y*vb)/(va*va+vb*vb);
         d = sqrt((x-t*va)*(x-t*va)+(y-t*vb)*(y-t*vb));
         if(d==0)
-            printf("%0.1lf",d);
+            printf("%0.1lf @ %lf",d,t);
         else
-            printf("%0.11lf",d);
+            printf("%0.11lf @ %lf",d,t);
         return 0;
 }

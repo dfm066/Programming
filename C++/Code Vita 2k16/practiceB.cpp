@@ -8,7 +8,7 @@ int main(){
         P = M*T;
     else{
         R = r /1200;
-        P = M*(1-1/pow(1+R,T))/R;
+        P = M*(pow(1+R,T)-1)/(R*(pow(1+R,T)));
     }
     printf("%d",P);
     return 0;

@@ -9,11 +9,11 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 #include<iostream>
 using namespace std;
 int main(){
-    int sum=0;
-    int i;
-    for(i = 1; i*3 < 1000; sum+=i*3,i++);
-    for(i = 1; i*5 < 1000;sum+=i*5,i++);
-    for(i = 1; i*15 < 1000;sum-=i*15,i++);
+    unsigned long long sum=0;
+    unsigned long long N = 1000000000;
+    for(auto i = 1; i*3 < N; sum+=i*3,i++);
+    for(auto i = 1; i*5 < N;sum+=i*5,i++);
+    for(auto i = 1; i*15 < N;sum-=i*15,i++);
 
     cout<<sum;
     return 0;

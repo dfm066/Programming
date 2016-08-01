@@ -24,6 +24,6 @@ int main(){
     }
     for(auto i:factors)
         cout<<i<<" ";
-
+    cout<<factors.back();
     return 0;
 }

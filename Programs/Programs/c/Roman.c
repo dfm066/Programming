@@ -11,20 +11,20 @@ void main()
     {
         if(no/100>0)
         {
-            l=no/100;
-            no%=(l*100);
+            c=no/100;
+            no%=(c*100);
 
         }
-        c=no/50;
+        l=no/50;
         no%=50;
     }
 //    printf(" %d %d",c,l);
 
     x=no/10;
-    for(j=0;j<l;j++)
-        printf("L");
     for(j=0;j<c;j++)
         printf("C");
+    for(j=0;j<l;j++)
+        printf("L");
     if(no%10>=5)
      {
           if(no%10==9)

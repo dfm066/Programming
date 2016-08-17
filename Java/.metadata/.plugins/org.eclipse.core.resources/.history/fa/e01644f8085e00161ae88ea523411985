@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class OperatorBasics {
+	private Scanner sc;
+	public OperatorBasics(){
+		sc = new Scanner(System.in);
+	}
+	public void shiftDemo(){
+		
+	}
+	public static void run(){
+		OperatorBasics runner = new OperatorBasics();
+		
+	}
+}

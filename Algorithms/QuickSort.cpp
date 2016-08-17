@@ -41,14 +41,15 @@ int main()
         int data[]={123,4531,214,534,68};
         int cnt=5;
 
-//        cout<<"\nEnter Data count : ";
-//        cin>>cnt;
-//        data=new int[cnt+1];
-//        cout<<"\nEnter "<<cnt<<" data elements : "<<endl;
-//        for(int i=0; i<cnt; i++){
+//      cout<<"\nEnter Data count : ";
+//      cin>>cnt;
+//      data=new int[cnt+1];
+//      cout<<"\nEnter "<<cnt<<" data elements : "<<endl;
+//      for(int i=0; i<cnt; i++){
 //           cin>>data[i];
 //      }
-//        data[cnt]=INF;
+//      data[cnt]=INF;
+
         omp_set_num_threads(4);
         QuickSort(data,0,cnt-1);
         cout<<"\nData elements : "<<endl;

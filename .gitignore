@@ -13,6 +13,9 @@ $RECYCLE.BIN/
 *.exe
 *.o
 *.bin
+#Binaries
+*/bin/*
+*.out
 
 #IDE
 .idea/

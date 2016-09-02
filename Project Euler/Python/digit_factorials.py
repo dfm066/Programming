@@ -13,6 +13,8 @@ def fact_digit_sum(num):
 def main():
     sum  = 0
     len = 2
+    digits = [i for i in range(10)]
+
     for(len)
 
 main()

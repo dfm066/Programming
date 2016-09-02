@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include<iostream>
 #include<cstdio>
 #include<omp.h>
@@ -59,7 +58,6 @@ int main()
         }
         return 0;
 }
-=======
 #include<iostream>
 #include<cstdio>
 #include<omp.h>
@@ -120,4 +118,3 @@ int main()
         }
         return 0;
 }
->>>>>>> origin/master

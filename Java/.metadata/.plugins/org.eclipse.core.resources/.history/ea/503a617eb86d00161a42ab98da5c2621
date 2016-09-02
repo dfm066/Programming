@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class UnicodeDemo implements Menu {
+	Scanner sc;
+	protected UnicodeDemo(){
+		sc = new Scanner(System.in);
+	}
+	protected void MarathiDemo(){
+//		String name;
+//		name =  sc.nextLine();
+//		char nameChars[] = name.toCharArray();
+		int noOfChar = 44;
+		char baseChar = '\u0904';
+		for(int i = 1; i <= noOfChar; i++){
+			System.out.print(Character.toChars(baseChar+i).toString()+"\t");
+			if(i%5==0)
+				System.out.println();
+		}
+	}
+	public static void run(){
+		UnicodeDemo runner  = new UnicodeDemo();
+		runner.MarathiDemo();
+	}
+	
+}

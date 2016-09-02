@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class UnicodeDemo implements Menu {
+	Scanner sc;
+	protected UnicodeDemo(){
+		sc = new Scanner(System.in);
+		System.out.println("In UnicodeDemo Constructor");
+	}
+	protected void MarathiDemo(){
+		String name;
+		name =  sc.nextLine();
+	}
+	public static void run(){
+		UnicodeDemo runner  = new UnicodeDemo();
+	}
+	
+}

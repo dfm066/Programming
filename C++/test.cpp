@@ -8,7 +8,8 @@
 #define fors for(int i = 0; i < s.length(); i++)
 using namespace std;
 int main(){
-    int a[2][2]={{1,'A'},{2,'B'}};
-    cout<<a[0][0]<<a[0][1];
+    int i = 5;
+    int x = ++i + i++;
+    cout<<x << " "<<i ;
     return 0;
 }

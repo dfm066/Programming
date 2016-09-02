@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 activeuserprofiles=Sanman-PC;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=shree
 useridperkey=Sanman-PC.Local\=shree;
+=======
+activeuserprofiles=Sanman-PC;Team
+eclipse.preferences.version=1
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=shree
+useridperkey=Sanman-PC.Local\=shree;
+>>>>>>> origin/master

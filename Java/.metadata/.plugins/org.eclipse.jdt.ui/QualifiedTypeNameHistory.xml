@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.awt.Frame"/>
@@ -9,3 +10,9 @@
 <fullyQualifiedTypeName name="java.lang.Character.UnicodeBlock"/>
 <fullyQualifiedTypeName name="java.lang.Character"/>
 </qualifiedTypeNameHistroy>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+</qualifiedTypeNameHistroy>
+>>>>>>> origin/master

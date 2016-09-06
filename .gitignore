@@ -20,7 +20,7 @@ $RECYCLE.BIN/
 #IDE
 .idea/
 .project
-
+*.xcodeproj/*
 
 # Windows Installer files
 *.cab

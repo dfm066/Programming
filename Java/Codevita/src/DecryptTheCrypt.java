@@ -1,5 +1,3 @@
-import java.awt.Frame;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class DecryptTheCrypt {
@@ -70,5 +68,6 @@ public class DecryptTheCrypt {
 				System.out.print(chars.charAt(xxx[i]));
 			}
 		}
+		s.close();
 	}
 }

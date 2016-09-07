@@ -21,6 +21,7 @@ $RECYCLE.BIN/
 .idea/
 .project
 .metadata/
+.recommenders/
 *xcodeproj/
 
 # Windows Installer files

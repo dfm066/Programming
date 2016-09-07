@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Scanner;
 import java.math.BigInteger;
 
-public class Solution {
+public class FactorialDigitSum {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         BigInteger fact = new BigInteger("1");

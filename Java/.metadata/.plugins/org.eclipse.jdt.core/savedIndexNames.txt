@@ -12,17 +12,10 @@ INDEX VERSION 1.127+E:\Programming\Java\.metadata\.plugins\org.eclipse.jdt.core
 882139543.index
 919737581.index
 4210772659.index
-<<<<<<< HEAD
 310380652.index
 1910228820.index
 646663704.index
 249459504.index
 1755913921.index
-=======
-249459504.index
-1910228820.index
-1755913921.index
-646663704.index
->>>>>>> origin/master
 2265617865.index
 1063230161.index

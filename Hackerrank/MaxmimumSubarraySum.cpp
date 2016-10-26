@@ -1,93 +1,33 @@
-<<<<<<< HEAD
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-ll arr[100000];
-int main() {
-    ll sum,m,max,tmp_sum,tmp_mod1,tmp_mod2;
-    int q,n;
-    cin>>q;
+long long arr[100000];
+long long sum[100001];
+int main(){
+    freopen("MSS.in","r",stdin);
+    freopen("MSS.out","w",stdout);
+    int n,k;
+    int max_sum = 0;
+    int q;
+    cin >> q;
     while(q--){
-        cin>>n;
-        cin>>m;
-        sum = 0;
-        max = 0;
-        for(int i = 0; i < n; i++){
-            cin>>arr[i];
-            sum += arr[i];
+        max_sum = 0;
+        cin >> n;
+        cin >> k;
+        for(int i =0; i < n; i++){
+            cin >> arr[i];
+            sum[i+1] += (sum[i] + arr[i]);
         }
-        max = sum % m;
-        tmp_sum = sum;
-        sort(arr,arr+n);
-        for(int  i = 0,j = n-1; i < j;){
-            tmp_mod1 = (tmp_sum-arr[i])%m;
-            tmp_mod2 = (tmp_sum-arr[j])%m;
-            if(tmp_mod2>tmp_mod1){
-                tmp_sum -= arr[j];
-                j--;
-                if(tmp_mod2>max)
-                    max = tmp_mod2;
+        long long tmp =0;
+        for(int i = 1; i <= n;i++){
+            for(int j = 0; j <= n-i; j++){
+                tmp = sum[j+i] - sum[j];
+                tmp %= k;
+                if(tmp > max_sum ){
+                      max_sum = tmp;
+                }
             }
-            else{
-                tmp_sum -= arr[i];
-                i++;
-                if(tmp_mod1>max)
-                    max = tmp_mod1;
-            }
-
         }
-        cout<<max<<endl;
+        cout << max_sum << endl;
     }
     return 0;
 }
-=======
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-using namespace std;
-#define ll long long
-ll arr[100000];
-int main() {
-    ll sum,m,max,tmp_sum,tmp_mod1,tmp_mod2;
-    int q,n;
-    cin>>q;
-    while(q--){
-        cin>>n;
-        cin>>m;
-        sum = 0;
-        max = 0;
-        for(int i = 0; i < n; i++){
-            cin>>arr[i];
-            sum += arr[i];
-        }
-        max = sum % m;
-        tmp_sum = sum;
-        sort(arr,arr+n);
-        for(int  i = 0,j = n-1; i < j;){
-            tmp_mod1 = (tmp_sum-arr[i])%m;
-            tmp_mod2 = (tmp_sum-arr[j])%m;
-            if(tmp_mod2>tmp_mod1){
-                tmp_sum -= arr[j];
-                j--;
-                if(tmp_mod2>max)
-                    max = tmp_mod2;
-            }
-            else{
-                tmp_sum -= arr[i];
-                i++;
-                if(tmp_mod1>max)
-                    max = tmp_mod1;
-            }
-
-        }
-        cout<<max<<endl;
-    }
-    return 0;
-}
->>>>>>> origin/master

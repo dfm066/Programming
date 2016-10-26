@@ -1,13 +1,15 @@
 #include<iostream>
 #include<conio.h>
 using namespace std;
+int cnt;
 void swap(int data[],int i,int j);
 void perm(int data[],int curr,int sz){
     if(curr==sz-1){
-            cout<<endl;
-        for(int j=0;j<sz;j++){
-            cout<<" "<<data[j];
-        }
+//            cout<<endl;
+//        for(int j=0;j<sz;j++){
+//            cout<<" "<<data[j];
+//        }
+        cnt++;
     }
     else{
         for(int i=curr;i<sz;i++){
@@ -26,8 +28,8 @@ int main(){
     for(int i=0;i<cnt;i++){
             cin>>data[i];
     }
-    cout<<"\nAll possible combinations of data elements : \n";
     perm(data,0,cnt);
+    cout<<"\nAll possible combinations of data elements are " << cnt << endl;
     cout<<"\nPress any key to exit";
     getch();
     return 1;

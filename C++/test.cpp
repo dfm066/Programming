@@ -6,12 +6,26 @@
 #include <map>
 #include <string>
 #define fors for(int i = 0; i < s.length(); i++)
+class A{
+public:
+    virtual void test(){
+    }
+    virtual ~A(){
+    }
+};
+class B:public A
+{
+public:
+    int test()
+    {
+
+    }
+};
 using namespace std;
 int main(){
     int i = 5;
-    int x = ++i + i++;
-    cout<< x << " "<<i ;
-    cout << endl << cbrt(1000000000000) << endl;
+    int& x = i;
+    cout << &x << " " << &i;
     return 0;
 }
 

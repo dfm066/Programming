@@ -4,17 +4,19 @@ def factorial(num):
         fact *= i
     return fact
 
-def fact_digit_sum(num):
-    sum = 0
-    for i in str(num):
-        sum += fact(int(i))
-    return sum
 
 def main():
+    facts = []
     sum  = 0
     len = 2
-    digits = [i for i in range(10)]
-
-    for(len)
+    for i in range(0,10):
+        facts.push(factorial(i))
+    for i in range(10, 10000):
+        partsum = 0
+        for j in str(i):
+            partsum += facts[int(j)]
+        if partsum == i:
+            sum += i
+    print("Sum :  {0}".format(sum))
 
 main()

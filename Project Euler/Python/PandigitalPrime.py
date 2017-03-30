@@ -45,7 +45,7 @@ def next_permutation(arr):
     return True
 
 
-digc = 9
+digc = 7
 primeNums = primes(int(math.sqrt(10 ** digc)) + 1)
 
 for i in range(digc, 0, -1):

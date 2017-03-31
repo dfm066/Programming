@@ -18,6 +18,7 @@ def divisor(n) -> int:
 
 # print("No of divisors : {0}".format(divisor(31351320)))
 
+
 def main():
     print("Input divisor count : ")
     max = int(input())
@@ -26,8 +27,8 @@ def main():
     div = 0
     for i in range(max, max*max):
         tri_num = i*(i+1)/2
-        divCount = divisor(tri_num)
-        if divCount > max:
+        divcount = divisor(tri_num)
+        if divcount > max:
             break
     print("Triangular number with divisors greater than {0} is {1}th :  {2} \nCompleted in {3}".format(max,i,tri_num,time.time()-t))
 

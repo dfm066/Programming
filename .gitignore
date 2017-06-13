@@ -23,6 +23,8 @@ $RECYCLE.BIN/
 *metadata
 .recommenders
 *xcodeproj
+.vscode
+.settings
 
 # Windows Installer files
 *.cab

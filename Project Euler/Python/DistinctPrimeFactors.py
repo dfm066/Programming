@@ -32,22 +32,11 @@ it = 0
 factors = [None]*w_size
 ans = 0
 
-while True:
-    factors[0] =  numberOfPrimeFactors(start)
-    if factors[0] == w_size:
-        it = 0
-        alarm = True
-        for it in range(1, w_size):
-            factors[it] = numberOfPrimeFactors(start+it)
-            if not factors[it] == w_size:
-                alarm = False
-                break
-            
-        if alarm:
-            ans = start
-            break
-        else:
-            start += it
+while it < 4:  
+    if numberOfPrimeFactors(start) == w_size:
+        it += 1
+    else:
+        it = 0 
     start += 1
 t3 = time.clock()
-print(f"Ans : {ans} found in {t3-t1} secs")
+print(f"Ans : {start-w_size+1} found in {t3-t1} secs")

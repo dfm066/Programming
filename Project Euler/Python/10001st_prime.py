@@ -20,7 +20,7 @@ def nthprime(num):
     return n
 
 num = int(input())
+
 t_ = time.time()
 print("Prime {0}: {1}".format(num,nthprime(num)))
 print('Time taken = ', time.time() - t_,' seconds.')
-

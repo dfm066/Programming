@@ -2,7 +2,7 @@
 Name : DFM066
 Problem 4
 
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
+A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 ï¿½ 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 
@@ -24,7 +24,7 @@ int main(){
         for( j = 0; j <= i/2; j++){
             no = (999-j)*(999-i-j);
             if(isPalindrome(no)){
-                cout<<no<<" "<<(999-j)<<" "<<(999-i-j);
+                cout<<no<<" "<<(999-j)<<" "<<(999-i-j) << endl;
                 break;
             }
         }

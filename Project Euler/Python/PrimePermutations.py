@@ -2,7 +2,7 @@ import itertools,time
 from utils import utils
 
 t1 = time.clock()
-primes = utils.nprimes(10000)
+primes = utils.primes2n(10000)
 it = 0
 size = 4
 grp = 3

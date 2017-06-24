@@ -1,13 +1,16 @@
 import math
 
 class utils:
-    def nprimes(n):
+    def primes2n(n):
         """ Returns  a list of primes < n """
         sieve = [True] * n
         for i in range(3,int(n**0.5)+1,2):
             if sieve[i]:
                 sieve[i*i::2*i]=[False]*((n-i*i-1)//(2*i)+1)
         return [2] + [i for i in range(3,n,2) if sieve[i]]
+    
+    def nprimes(n):
+        return len(utils.primes2n(n))
 
     def nthprime(n):
         num = 1
@@ -33,10 +36,21 @@ class utils:
     def prime_factors(n):
         i = 2
         factors = []
+        if n % i == 0:
+            factors.append(2)
+        while n % i == 0:
+            n //= i
+        i += 1
         while i <= n:
-            if n%i == 0:
+            if n % i == 0:
                 factors.append(i)
                 n = n // i
-                i=2
-            i+=1
+                i = 1
+            i += 2
         return factors
+    
+    def nfactors(n):
+        return len(utils.prime_factors(n))
+
+print(utils.nfactors(500))
+print(utils.nprimes(500))

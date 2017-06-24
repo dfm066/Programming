@@ -29,3 +29,14 @@ class utils:
                 primes.append(num)
                 n -= 1
         return num
+
+    def prime_factors(n):
+        i = 2
+        factors = []
+        while i <= n:
+            if n%i == 0:
+                factors.append(i)
+                n = n // i
+                i=2
+            i+=1
+        return factors

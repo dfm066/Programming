@@ -36,3 +36,4 @@ for j in range(0,len(primes)):
             a_f = a
 print(max,a_f,b_f)
 print(a_f*b_f)
+print(max*max+a_f*max+b_f)

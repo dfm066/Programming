@@ -5,8 +5,15 @@ def product(num):
     max = 0
     for i in range(0,len(series)-num+1):
         tmp = 1
+        flag = 0
         for j in range(0,num):
+            if int(series[i+j]) == 0:
+                flag = j
+                break
             tmp *= int(series[i+j])
+        if flag != 0:
+            i += flag
+            continue
         if tmp > max :
             max = tmp
 

@@ -52,5 +52,14 @@ class utils:
     def nfactors(n):
         return len(utils.prime_factors(n))
 
-print(utils.nfactors(500))
-print(utils.nprimes(500))
+    def nthroot(num, n):
+        u, s = num, num+1
+        while u < s:
+            s = u
+            t = (n - 1) * s + num // pow(s, n-1)
+            u = t // n
+        return s
+        if float(s) == num ** (1/n):
+            return s
+        else:
+            return -1

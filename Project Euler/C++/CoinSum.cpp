@@ -1,20 +1,24 @@
+#include <cstdio>
+#include <vector>
 #include <iostream>
+using namespace std;
+typedef unsigned long long ull;
 
-int coins[8] = {200, 100, 50, 20, 10, 5,2,1};
+#define MOD 1000000007
 
-int findposs(int money, int maxcoin)
-{
-    int sum = 0;
-    for(int i = maxcoin; i<8;i++)
-    {
-        if (money-coins[i] == 0) sum+=1;
-        if (money-coins[i] > 0) sum+=findposs(money-coins[i], i);
+int main(){
+    int T,N,ignore;
+    vector<int> coins{1, 2, 5, 10, 20, 50, 100, 200};
+    ull ways[100001];
+    ways[0] = 1;
+    for(const auto& coin : coins){
+        for(auto j = coin; j <= 100000; ++j)
+            ways[j] = (ways[j] % MOD + ways[j - coin] % MOD) % MOD;
     }
-    return sum;     
-}
-
-int main()
-{
-    std::cout << findposs(200, 0) << std::endl;
+    ignore = scanf("%d",&T);
+    while(T--){
+        ignore = scanf("%d",&N);
+        ignore = printf("%llu\n",ways[N]);
+    }
     return 0;
 }

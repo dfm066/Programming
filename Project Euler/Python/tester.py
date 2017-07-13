@@ -1,3 +1,2 @@
-from utils import utils
-
-print(utils.nthroot(64, 3))
+num = "1234"
+print(num[3:])

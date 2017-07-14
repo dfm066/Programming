@@ -1,5 +1,5 @@
 import math
-
+import time
 
 def primes(n):
     sieve = [True] * n
@@ -17,6 +17,8 @@ def form_num(arr):
 
 
 def check_prime(num):
+    if num < 2:
+        return False
     for i in primeNums:
         if i <= math.sqrt(num):
             if num % i == 0:
@@ -45,8 +47,10 @@ def next_permutation(arr):
     return True
 
 
-digc = 7
+digc = int(input())
+t = time.clock()
 primeNums = primes(int(math.sqrt(10 ** digc)) + 1)
+cnt = 0
 
 for i in range(digc, 0, -1):
     num = []
@@ -55,13 +59,16 @@ for i in range(digc, 0, -1):
     curr = form_num(num)
     if check_prime(curr):
         print(curr)
-        break
-    flg = False
+        cnt += 1
+    # flg = False
     while next_permutation(num):
         curr = form_num(num)
         if check_prime(curr):
             print(curr)
-            flg = True
-            break
-    if flg:
-        break
+            cnt += 1
+            # flg = True
+            # break
+    # if flg:
+    #     break
+print(cnt)
+print(time.clock()-t)

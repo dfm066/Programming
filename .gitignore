@@ -20,8 +20,8 @@ $RECYCLE.BIN/
 #IDE
 .idea/
 .project
-*metadata*
-.recommenders
+*metadata/*
+*.recommenders/*
 *xcodeproj
 .vscode
 .settings

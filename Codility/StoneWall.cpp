@@ -1,26 +1,18 @@
-
-
-// you can use includes, for example:
-// #include <algorithm>
-#include <unordered_map>
-#include <set>
-#include <vector>
-// you can write to stdout for debugging purposes, e.g.
-// cout << "this is a debug message" << endl;
+#include <bits/stdc++.h>
 using namespace std;
 
 int solution(vector<int> &H) {
-    unordered_map<int, set<int>>  uniq_bricks;
-    int curr_sz = 1000000001;
+    // write your code in C++14 (g++ 6.2.0)
     int cnt = 0;
-    for (auto h:H) {
-        if (curr_sz > h) {
-            uniq_bricks[curr_sz].insert(curr_sz);
-            curr_sz = h;
-        } else if (curr_sz < h) {
-            uniq_bricks[curr_sz].insert(h);
+    stack<int> bricks;
+
+    for(auto val:H) {
+        while (!bricks.empty() && bricks.top() > val)   bricks.pop();
+        if (bricks.empty() ||
+            bricks.top() < val) {
+            cnt++;
+            bricks.push(val);
         }
     }
-    for (auto s:uniq_bricks)    cnt += (int)s.second.size();
     return cnt;
 }

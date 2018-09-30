@@ -73,40 +73,6 @@ int solution(vector<int> &A) {
     return blocks;
 }
 
-
-// int solution(vector<int> &A) {
-//     int N = A.size();
-//     vector<int> peaks(N);
-//     int blocks = 0;
-//     int tot_peak = 0, p_i = 0;
-//     for (int i = 1; i < N-1; i++) {
-//         if (A[i] > A[i-1] && A[i] > A[i+1]) {
-//             peaks[p_i++] = i;
-//             i++;
-//         }
-//     }
-//     if (p_i == 0)   return 0;
-//     if (p_i == 1)   return 1;
-//     tot_peak = p_i;
-//     int max_diff = 0;
-//     for (int i = 1; i < tot_peak; i++) {
-    
-//         max_diff = max(max_diff, peaks[i] - peaks[i-1]);
-//     }
-//     blocks = max_diff;
-//     blocks = max(blocks, peaks[0] + 1);
-//     blocks = max(blocks, N - peaks[p_i-1]);
-//     blocks = max(blocks, N / tot_peak);
-//     if (is_prime(N)) return 1;
-//     while(N % blocks != 0 && blocks < N) {
-//         blocks++;
-//     }
-//     if (N / blocks <= tot_peak) {
-//         blocks = N / blocks;
-//     }
-    
-//     return blocks;
-// }
 int main(){
     int N;
     cin >> N;

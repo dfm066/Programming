@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include "utils.cpp"
+#include "utils.h"
 
 using namespace std;
 

@@ -62,19 +62,20 @@ int main()  {
     }
     
     auto en = GET_HRTIME();
-    
-    cout << " Solution : " << gt_val << endl;
-    
     time_diff exec_t = en-st;
+    cout << " Solution : " << gt_val << endl;
     cout << "Time to execute : " << ms(exec_t).count() << "ms\t" 
        << us(exec_t).count() << "us\t" << ns(exec_t).count() << "ns\n" <<  endl;
 
     st = GET_HRTIME();
+
     gt_val = fast_solution();
+    
     en = GET_HRTIME();
     cout << "Fast Solution : " << gt_val << endl;    
     exec_t = en-st;
     cout << "Time to execute : " << ms(exec_t).count() << "ms\t" 
        << us(exec_t).count() << "us\t" << ns(exec_t).count() << "ns\n" <<  endl;
+       
     return 0;
 }

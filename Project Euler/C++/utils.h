@@ -6,14 +6,67 @@ using us = std::chrono::duration<double, std::micro>;
 using ms = std::chrono::duration<double, std::milli>;
 using time_diff = std::chrono::duration<double>;
 
-#define SemigroupOperation typename
-#define Regular typename
-#define Integer typename
-#define MultiplicativeSemiGroup typename
-#define GET_HRTIME()  std::chrono::steady_clock::now()
+// Concepts - requirements on type
+#define SemigroupOperation typename      // Operation must be associative
+#define Regular typename                 // Type must be regular
+#define Integer typename                 // Type must be interger
+#define MultiplicativeSemiGroup typename // Semigroup must be multiplicative
+#define RandomAccessIterator typename    // Iterator must be random access
 
+#define GET_HRTIME() std::chrono::steady_clock::now()
 
-std::vector<int> primes2n(int n);
+template <RandomAccessIterator I, Integer N>
+void mark_sieve(I first, I last, N step) {
+  assert(first != last);
+  *first = false;
+  while (last - first > step) {
+    first = first + step;
+    *first = false;
+  }
+}
+
+template <RandomAccessIterator I, Integer N>
+void sift(I first, N n) {
+  I last = first + n;
+  std::fill(first, last, true);
+  N i(0);
+  N square(3);
+  N step(3);
+  while (square < n) {
+    // invariant: square = 2i^2 + 6i + 3, step = 2i + 3
+    if (first[i]) mark_sieve(first + square, last, step);
+    ++i;
+    square += step;
+    step += N(2);
+    square += step;
+  }
+}
+
+template <Integer N>
+std::vector<N> primes2n(N n) {
+  N map_sz = (n+1)/2 - 1;
+  N step(3);
+  N square(0);
+  N s_step(2);
+  std::vector<bool> num_map(map_sz);
+  std::vector<N> primes;
+
+  if (n < 2)  return primes;
+  primes.push_back(2);
+  
+  if (map_sz == 0)  return primes;
+  primes.reserve(map_sz);
+
+  sift(std::begin(num_map), map_sz);
+  
+  for (N i = N(0); i < map_sz; ++i) {
+    if (num_map[i])
+      primes.push_back(square + step);
+    square += s_step;
+  }
+
+  return primes;
+}
 
 template <Regular R> inline bool odd(const R &n) { return n & 1; }
 

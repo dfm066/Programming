@@ -1,12 +1,4 @@
 #include "utils.h"
-#include <bits/stdc++.h>
-
-using namespace std;
-using Point = pair<int, int>;
-using ns = chrono::duration<double, std::nano>;
-using us = chrono::duration<double, std::micro>;
-using ms = chrono::duration<double, std::milli>;
-using time_diff = std::chrono::duration<double>;
 
 double fdigits(const Point &x) { return log10(x.first) * x.second; }
 
@@ -20,7 +12,7 @@ bool is_max(const Point &x, const Point &y) {
 
 int main() {
  
-  auto st = chrono::system_clock::now();
+  auto st = chrono::steady_clock::now();
   std::ifstream input(
       "G:\\Programms\\Programming\\Project Euler\\C++\\p099_base_exp.txt");
   if (!input.is_open()) {
@@ -46,7 +38,7 @@ int main() {
   //       return true;
   //     });
   int lineno = (val - v.begin()) + 1;
-  auto en = chrono::system_clock::now();
+  auto en = chrono::steady_clock::now();
 
   printf("\nLarget integral value : %d - %d\n", val->first, val->second);
   printf("Lineno: %d\n", lineno);

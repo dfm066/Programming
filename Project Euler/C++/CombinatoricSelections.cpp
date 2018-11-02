@@ -53,7 +53,7 @@ int fast_solution() {
 }
 
 int main()  {
-    auto st = chrono::steady_clock::now();
+    auto st = GET_HRTIME();
     
     long long gt_val = 0;
     long long curr_val = 0;
@@ -61,7 +61,7 @@ int main()  {
         gt_val += nCr(i);
     }
     
-    auto en = chrono::steady_clock::now();
+    auto en = GET_HRTIME();
     
     cout << " Solution : " << gt_val << endl;
     
@@ -69,9 +69,9 @@ int main()  {
     cout << "Time to execute : " << ms(exec_t).count() << "ms\t" 
        << us(exec_t).count() << "us\t" << ns(exec_t).count() << "ns\n" <<  endl;
 
-    st = chrono::steady_clock::now();
+    st = GET_HRTIME();
     gt_val = fast_solution();
-    en = chrono::steady_clock::now();
+    en = GET_HRTIME();
     cout << "Fast Solution : " << gt_val << endl;    
     exec_t = en-st;
     cout << "Time to execute : " << ms(exec_t).count() << "ms\t" 

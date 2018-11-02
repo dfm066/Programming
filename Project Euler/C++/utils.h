@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-using Point = pair<int, int>;
-using ns = chrono::duration<double, std::nano>;
-using us = chrono::duration<double, std::micro>;
-using ms = chrono::duration<double, std::milli>;
+using Point = std::pair<int, int>;
+using ns = std::chrono::duration<double, std::nano>;
+using us = std::chrono::duration<double, std::micro>;
+using ms = std::chrono::duration<double, std::milli>;
 using time_diff = std::chrono::duration<double>;
 
 #define SemigroupOperation typename
 #define Regular typename
 #define Integer typename
 #define MultiplicativeSemiGroup typename
+#define GET_HRTIME()  std::chrono::steady_clock::now()
 
 
 std::vector<int> primes2n(int n);

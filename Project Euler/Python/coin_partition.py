@@ -15,7 +15,6 @@
 import math
 
 p = [1, 1, 2, 3]              # partition vector
-d = [0, 1, 3, 4]              # sigma vector
 
 def partitions(n):
     parts = 0

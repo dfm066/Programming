@@ -96,6 +96,7 @@ bool is_available(int sudoku[sz][sz], int x, int y, int val) {
 }
 
 bool solve(int sudoku[sz][sz], int x, int y) {
+    counter++;
     if (y == sz) {
         if (check())  return true;
         else return false;
@@ -140,15 +141,21 @@ bool solve(int sudoku[sz][sz], int x, int y) {
 
 int main() {
     int sudoku[sz][sz];
-
+    int sudoku_num = 0;
     int sum = 0;
     int row = 0;
     char line[sz+2], grid[sz+2];
+    time_diff exec_t;
+    vector<time_diff> puzzle_time;
+    
+    puzzle_time.reserve(64);
     
     while(!cin.eof()) {
+        auto st = GET_HRTIME(); 
         cin.getline(grid, sz+1);
         reset_maps();
         counter = 0;
+        sudoku_num++;
         for (row = 0; row < sz && !cin.eof(); row++){
             cin.getline(line, sz+1);
             for (int col = 0; col < sz; col++) {
@@ -156,17 +163,28 @@ int main() {
                 if (sudoku[row][col])   update_maps(col, row, sudoku[row][col]);
             }
         }
-        // print(sudoku, "Before solve : \n");
+   
+        print(sudoku, "Before solve : \n");
         if (solve(sudoku, 0, 0)) {
-            // cout << "Solved " << grid << " !!" << endl;
+            cout << "Solved " << grid << " in " << counter << " moves !!" << endl;
             sum += sudoku[0][0]*100 + sudoku[0][1]*10 + sudoku[0][2];
-            // print(sudoku, "After solve : \n");
+            print(sudoku, "After solve : \n");
         } else {
-            // cout << "Couldn't solve " << grid << " !!" << endl;
+            cout << "Couldn't solve " << grid << " !!" << endl;
             assert(0);
         }
-        
+        auto en = GET_HRTIME();
+        puzzle_time.push_back(en-st);
+        exec_t += (en - st);
     }
 
     cout << "Total : " << sum << endl;
+    
+    for (int num = 0; num < sudoku_num; num++) {
+        cout << "Puzzle " << num+1 << " " << ms(puzzle_time[num]).count() << "ms\t" 
+            << us(puzzle_time[num]).count() << "us\t" << ns(puzzle_time[num]).count() << "ns" <<  endl;
+    }
+    cout << "Total time : " << ms(exec_t).count() << "ms\t" 
+        << us(exec_t).count() << "us\t" << ns(exec_t).count() << "ns\n" <<  endl;
+    return 0;
 }

@@ -2,9 +2,9 @@
 using namespace std;
 
 const int limit = 100;
-const int sz = limit * 2 + 1;
+const int sz = limit+1;
 
-void print_partiotions(vector<vector<int>> &p, const string &msg) {
+void print_partitions(vector<vector<int>> &p, const string &msg) {
     cout << msg;
     for(auto part : p) {
         for (int i = part.size()-1; i > 0; i--) {
@@ -43,19 +43,22 @@ vector<vector<int>> uniq_partitions(int n) {
     }
 }
 
-bool find_match(int corr, int guess, int *c_map, vector<vector<int>> &partitions) {
+bool find_match(int guess, int *c_map, vector<vector<int>> &partitions) {
     int st = 0;
-    if (!partitions[st][guess]) {
+    if (!partitions[st][guess] && guess != 1) {
         while(partitions[st][guess] != 1 && partitions[st][1] != 1)  st++;
     }
     int rng = partitions.size();
     for (; st < rng; st++) {
-        if (partitions[st][1] < 1)   continue;
-        partitions[st][1]--;
+        //print_partitions(partitions, "Trying for "+to_string(guess)+ " :\n");
+        if (!partitions[0][guess]) {
+            if (partitions[st][1] < 1)   continue;
+            partitions[st][1]--;
+        }
         bool found = true;
         vector<int> parts = ref(partitions[st]);
         for (int i = parts.size()-1; i > 0; i--) {
-            if (parts[i] && parts[i] > c_map[i+corr])   {
+            if (parts[i] && parts[i] > c_map[i])   {
                 found = false;
                 break;
             }
@@ -66,38 +69,43 @@ bool find_match(int corr, int guess, int *c_map, vector<vector<int>> &partitions
 }
  int solution(vector<int> &A) {
     int c_map[sz] = {0};
-    int p_sum = 0, n_sum = 0;
+    int min_diff = 0;
     for (auto n:A) {
-        c_map[n+limit]++;
-        if (n > 0)  p_sum += n;
-        else n_sum += n;
-        
+        int idx = abs(n);
+        c_map[idx]++;
+        min_diff += idx;
     }
-    int min_diff = p_sum + n_sum;
     int possible;
-    int corr;
-    if (min_diff < 0) {
-        corr = 0;
-        min_diff *= -1;
-        possible = min_diff >> 1;
-        min_diff = min_diff - (possible << 1);
-    } else if (min_diff > 0) {
-        corr = limit;
-        possible = min_diff >> 1;
-        min_diff = min_diff - (possible << 1);
-    } else {
+    int it = limit;
+    while (min_diff && it > 0) {
+        if (c_map[it]) {
+            int reduce =  it * 2;
+            int r_cnt = c_map[it];
+            for (int i = 0; i < r_cnt && min_diff < abs(min_diff - reduce); i++) {
+                min_diff -= reduce;
+                c_map[it]--;
+            }
+        }
+       it--;
+    }
+    if  (!min_diff) {
         return 0;
     }
+    possible = min_diff >> 1;
+    min_diff = min_diff - (possible << 1);
+    if (!possible)  return min_diff;
+    for (it = 1; !c_map[it]; it++);
+    if (possible <= it) return 2*possible + min_diff;
     vector<vector<int>> partitions = uniq_partitions(possible);
+
     for (int guess = possible; guess > 0; guess--) {
-        if (find_match(corr, guess, c_map, partitions)) {
+        if (find_match(guess, c_map, partitions)) {
             break;
         }
         min_diff += 2;
     }
     return min_diff;
 }
-
 int main() {
     int N, it = 0;
     cin >> N;

@@ -7,8 +7,6 @@ int main(){
     mpz_t num;
     mpz_t sum;
     mpz_t tmp;
-    mpz_init(sum);
-    mpz_init(sum);
     unsigned long int base = 2;
     unsigned long int index = 1000;
     mpz_ui_pow_ui(num,base,index);

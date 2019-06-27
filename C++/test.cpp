@@ -62,6 +62,13 @@ public:
         cout << "Deleted child obj " << endl;
     }
 };
+using ll = long long;
+
+ll ackerman_test(ll m, ll n) {
+  if (m == 0) return n + 1;
+  if (m > 0 && n == 0) return ackerman_test(m-1, 1);
+  return ackerman_test(m-1, ackerman_test(m, n-1));
+}
 
 int
 main()
@@ -72,6 +79,10 @@ main()
         c1.parent_two::test();
         c1.parent_one::test();
     }
-  
+  long long m, n;
+  cout << "Enter ackerman function parameters : ";
+  cin >> m >> n;
+  long long test = ackerman_test(m,n);
+  cout << "Ackerman test : " << test << endl;
   return 0;
 }

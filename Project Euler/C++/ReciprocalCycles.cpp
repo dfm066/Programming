@@ -2,10 +2,19 @@
 using namespace std;
 int cycle[10001];
 int longest[10001];
+template <typename T>
+void print_vector(const vector<T> &v, const string&& str) {
+    cout << str;
+    for(const auto &val : v) {
+        cout << val << " ";
+    }
+    cout << endl;
+}
 int main(){
-    int lim = 10000;
+    int lim;
+    cin >> lim;
     int rem,pos;
-    vector<int> frac(lim,0);
+    vector<int> frac(lim+1,0);
     for(int d = 1; d <= lim; d++){
        frac.assign(d,0);
        rem = 1;
@@ -18,6 +27,7 @@ int main(){
         }
         if(rem != 0)
             cycle[d] = pos - frac[rem];
+        print_vector(frac, "Frac : ");
     }
     int curr = 0;
     for(int d = 1; d <= lim; d++){

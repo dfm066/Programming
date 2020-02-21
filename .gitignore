@@ -14,7 +14,7 @@ $RECYCLE.BIN/
 *.o
 *.bin
 #Binaries
-*/bin/*
+*bin/*
 *.out
 
 #IDE

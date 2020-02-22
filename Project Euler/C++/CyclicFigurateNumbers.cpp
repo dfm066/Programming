@@ -24,8 +24,13 @@
  *  triangle, square, pentagonal, hexagonal, heptagonal, and octagonal, is represented by a different number in the set.
  * 
  */
+#include <iostream>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+#include <algorithm>
+#include <numeric>
 
-#include <bits/stdc++.h>
 
 template <typename Integer>
 Integer TriangleNumber(Integer n)

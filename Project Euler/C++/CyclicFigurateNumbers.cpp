@@ -24,41 +24,35 @@
  *  triangle, square, pentagonal, hexagonal, heptagonal, and octagonal, is represented by a different number in the set.
  * 
  */
-#include <iostream>
-#include <unordered_map>
-#include <unordered_set>
-#include <vector>
-#include <algorithm>
-#include <numeric>
+#include "utils.h"
 
-
-template <typename Integer>
-Integer TriangleNumber(Integer n)
+template <Integer I>
+I TriangleNumber(I n)
 {
     return n * (n + 1) / 2;
 }
-template <typename Integer>
-Integer SquareNumber(Integer n)
+template <Integer I>
+I SquareNumber(I n)
 {
     return n * n;
 }
-template <typename Integer>
-Integer PentagonalNumber(Integer n)
+template <Integer I>
+I PentagonalNumber(I n)
 {
     return n * (3 * n - 1) / 2;
 }
-template <typename Integer>
-Integer HexagonalNumber(Integer n)
+template <Integer I>
+I HexagonalNumber(I n)
 {
     return n * (2 * n - 1);
 }
-template <typename Integer>
-Integer HeptagonalNumber(Integer n)
+template <Integer I>
+I HeptagonalNumber(I n)
 {
     return n * (5 * n - 3) / 2;
 }
-template <typename Integer>
-Integer OctagonalNumber(Integer n)
+template <Integer I>
+I OctagonalNumber(I n)
 {
     return n * (3 * n - 2);
 }
@@ -70,46 +64,46 @@ double solveQuadraticEq(double a, double b, double c)
     double second = (-b - std::sqrt(b*b - 4*a*c))/(2*a);
     return std::ceil(std::max(first, second));
 }
-template <typename Integer>
-Integer InvTriangleNumber(Integer n)
+template <Integer I>
+I InvTriangleNumber(I n)
 {
     // solve for 0.5x^2 + 0.5x - x = 0
     double a = 0.5, b = 0.5, c = -n;
-    return Integer(solveQuadraticEq(a,b,c));
+    return I(solveQuadraticEq(a,b,c));
 }
-template <typename Integer>
-Integer InvSquareNumber(Integer n)
+template <Integer I>
+I InvSquareNumber(I n)
 {
     // solve for x^2 - n = 0
-    return Integer(ceil(sqrt(double(n))));
+    return I(ceil(sqrt(double(n))));
 }
-template <typename Integer>
-Integer InvPentagonalNumber(Integer n)
+template <Integer I>
+I InvPentagonalNumber(I n)
 {
     // solve for 1.5x^2 - 0.5x - x = 0
     double a = 1.5, b = -0.5, c = -n;
-    return Integer(solveQuadraticEq(a,b,c));
+    return I(solveQuadraticEq(a,b,c));
 }
-template <typename Integer>
-Integer InvHexagonalNumber(Integer n)
+template <Integer I>
+I InvHexagonalNumber(I n)
 {
     // solve for 2x^2 - 1x - n = 0
     double a = 2, b = -1, c = -n;
-    return Integer(solveQuadraticEq(a,b,c));
+    return I(solveQuadraticEq(a,b,c));
 }
-template <typename Integer>
-Integer InvHeptagonalNumber(Integer n)
+template <Integer I>
+I InvHeptagonalNumber(I n)
 {
     // solve for 2.5x^2 - 1.5x - n = 0
     double a = 2.5, b = -1.5, c = -n;
-    return Integer(solveQuadraticEq(a,b,c));
+    return I(solveQuadraticEq(a,b,c));
 }
-template <typename Integer>
-Integer InvOctagonalNumber(Integer n)
+template <Integer I>
+I InvOctagonalNumber(I n)
 {
     // solve for 3x^2 - 2x - n = 0
     double a = 3, b = -2, c = -n;
-    return Integer(solveQuadraticEq(a,b,c));
+    return I(solveQuadraticEq(a,b,c));
 }
 
 
@@ -150,6 +144,7 @@ bool solution61(const std::vector<std::pair<int, int>> *startCycle, std::unorder
 int main()
 {
     using namespace std;
+    auto st_t = GET_HRTIME();
     // Initialize maps with polygonal number generators and inverse polygonal number generators.
     // polygonalNumGenerator contains "|vertices of polygon|" : "polygon number generator"
     // invPolygonalNumGenerator contains "|vertices of polygon|" : "inverse polygon number generator"
@@ -204,12 +199,17 @@ int main()
         // Check if guess is right.
         if (solution61(startCycle, &cyclicNumbers, candidate, candidate, used_polygon)) {
             sum = std::accumulate(std::begin(cyclicNumbers), std::end(cyclicNumbers), 0);
-            cout << "Ordered set of six cyclic 4-digit polygonal numbers : " << sum << " (";
+            cout << "Ordered set of six cyclic 4-digit polygonal numbers : (";
             for (const auto& cycle : cyclicNumbers) cout << cycle << " + ";
             cout << "\b\b\b) " << endl;
             break;
         }
     }
+    auto en_t = GET_HRTIME();
+    time_diff exec_t = en_t - st_t;
+    cout << "Solution : " << sum << endl;
+    cout << "Time to execute : " << ms(exec_t).count() << "ms\t" 
+       << us(exec_t).count() << "us\t" << ns(exec_t).count() << "ns\n" <<  endl;
     if (!sum) cout << "No solution found !!!!" << endl;
     return 0;
 }

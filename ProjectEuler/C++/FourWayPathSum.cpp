@@ -3,25 +3,20 @@
 #include <queue>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <array>
 
 using namespace std;
 
-void tokenize(const string &str, vector<string> &tokens,
-              const string &delimiters = " ") {
-  // Skip delimiters at beginning.
-  string::size_type lastPos = str.find_first_not_of(delimiters, 0);
-  // Find first "non-delimiter".
-  string::size_type pos = str.find_first_of(delimiters, lastPos);
-
-  while (string::npos != pos || string::npos != lastPos) {
-    // Found a token, add it to the vector.
-    tokens.push_back(str.substr(lastPos, pos - lastPos));
-    // Skip delimiters.  Note the "not_of"
-    lastPos = str.find_first_not_of(delimiters, pos);
-    // Find next "non-delimiter"
-    pos = str.find_first_of(delimiters, lastPos);
-  }
+vector<string> split(const string &str, const char &delimiter = ' ') {
+  istringstream stream(str);
+  vector<string> tokens;
+  for(array<char, 16> token; stream.getline(&token[0], 16, delimiter);) {
+    tokens.push_back(string(token.data()));
+  };
+  return tokens;
 }
+
 void print_mat(vector<vector<int>> &mat) {
   cout << "Matrix : " << endl;
   for (auto i : mat) {
@@ -104,18 +99,15 @@ int main() {
   vector<vector<int>> mat;
   vector<int> row;
   int sum = 0;
-  vector<string> num;
   cout << "Enter filename : ";
   cin >> line;
   in.open(line);
   while (!in.eof()) {
     getline(in, line);
-    tokenize(line, num, ",");
-    for (auto i : num)
+    for (auto i : split(line, ','))
       row.push_back(stoi(i));
     mat.push_back(row);
     row.clear();
-    num.clear();
   }
 
   sum = find_three_way_pathsum(mat);

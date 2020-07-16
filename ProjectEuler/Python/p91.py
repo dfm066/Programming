@@ -1,5 +1,3 @@
-import math
-
 def p91(lower, upper) -> int:
     # right angle at origin
     tcount = (upper-lower)*(upper-lower)

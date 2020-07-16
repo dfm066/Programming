@@ -15,6 +15,7 @@
 #include<algorithm>
 #include<chrono>
 #include<random>
+#include <functional>
 
 
 using Point = std::pair<int, int>;
@@ -194,7 +195,7 @@ R semigroup_operation(R a, N n, Op op) {
 }
 
 template <MultiplicativeSemiGroup T, Integer N>
-struct power : public std::binary_function<T, N, T> {
+struct power {
   T operator()(const T &x, const N &y) {
     if (y == N(0)) return N(1);
     return semigroup_operation(x, y, std::multiplies<T>());

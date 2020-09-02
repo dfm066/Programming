@@ -244,3 +244,12 @@ void tokenize(const std::string &str, std::vector<std::string> &tokens,
     pos = str.find_first_of(delimiters, lastPos);
   }
 }
+
+template <typename I>
+void print_v(std::vector<I> vec)
+{
+  for (const auto& v: vec) {
+    std::cout << v << ", ";
+  }
+  std::cout << std::endl;
+}

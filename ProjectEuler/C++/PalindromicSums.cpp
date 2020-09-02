@@ -29,7 +29,6 @@ long long problem_125(long long limit) {
   });
   transform(squares.begin(), prev(squares.end()), next(squares.begin()),
             next(squares.begin()), std::plus<>{});
-  int cnt = 0;
   for (int i = 0; i < squares.size(); ++i) {
     for (int j = i + 2; j < squares.size(); ++j) {
       long long sum = squares[j] - squares[i];

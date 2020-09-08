@@ -29,12 +29,12 @@ struct instrumented : instrumented_base {
 
   explicit instrumented(const T& x) : value(x) { ++counts[construction]; }
 
-  explicit instrumented(T&& x) : value(move(x)) { ++counts[move_construction]; }
+  explicit instrumented(T&& x) : value(std::move(x)) { ++counts[move_construction]; }
 
   // Semiregular:
   instrumented(const instrumented& x) : value(x.value) { ++counts[copy]; }
   instrumented(instrumented& x) : value(x.value) { ++counts[copy]; }
-  instrumented(instrumented&& x) : value(move(x.value)) {
+  instrumented(instrumented&& x) : value(std::move(x.value)) {
     ++counts[move_construction];
   }
   instrumented() : value() { ++counts[default_constructor]; }
@@ -52,7 +52,7 @@ struct instrumented : instrumented_base {
   }
   instrumented& operator=(instrumented&& x) {
     ++counts[move_assignment];
-    value = move(x.value);
+    value = std::move(x.value);
     return *this;
   }
   // Regular
@@ -90,7 +90,7 @@ struct instrumented_pair : instrumented_base {
     ++counts[construction];
   }
   explicit instrumented_pair(std::pair<T1, T2>&& x)
-      : first(move(x.first)), second(move(x.second)) {
+      : first(std::move(x.first)), second(std::move(x.second)) {
     ++counts[move_construction];
   }
   template <class _Other1, class _Other2>
@@ -109,7 +109,7 @@ struct instrumented_pair : instrumented_base {
     ++counts[copy];
   }
   instrumented_pair(instrumented_pair&& x)
-      : first(move(x.first)), second(move(x.second)) {
+      : first(std::move(x.first)), second(std::move(x.second)) {
     ++counts[move_construction];
   }
   instrumented_pair(const T1& first, const T2& second)
@@ -120,7 +120,7 @@ struct instrumented_pair : instrumented_base {
     ++counts[construction];
   }
   instrumented_pair(T1&& first, T2&& second)
-      : first(move(first)), second(first(second)) {
+      : first(std::move(first)), second(first(second)) {
     ++counts[move_construction];
   }
 
@@ -144,8 +144,8 @@ struct instrumented_pair : instrumented_base {
   }
   instrumented_pair& operator=(instrumented_pair&& x) {
     ++counts[move_assignment];
-    first = move(x.first);
-    second = move(x.second);
+    first = std::move(x.first);
+    second = std::move(x.second);
     return *this;
   }
   // Regular

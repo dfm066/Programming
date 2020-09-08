@@ -1,4 +1,26 @@
-#include <bits/stdc++.h>
+#include<cstdio>
+#include<cmath>
+#include<cstdlib>
+#include<assert.h>
+
+#include<iostream>
+#include<fstream>
+
+#include<string>
+#include<vector>
+#include<unordered_set>
+#include<unordered_map>
+
+#include<numeric>
+#include<algorithm>
+#include<chrono>
+#include<random>
+#include <functional>
+#include "fmt/core.h"
+#include "fmt/format.h"
+#include "fmt/format-inl.h"
+#include "fmt/ranges.h"
+#include "Library/C++/format.cc"
 
 using Point = std::pair<int, int>;
 using ns = std::chrono::duration<double, std::nano>;
@@ -97,7 +119,7 @@ struct bigint
       digits.push_back(num);
   }
   size_t size() const { return digits.size(); };
-  bigint& operator=(const bigint& x) { digits = x.digits; }
+  bigint& operator=(const bigint& x) { digits = x.digits; return *this; }
 
   friend bool operator==(const bigint& x, const int i);
 

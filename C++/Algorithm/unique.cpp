@@ -3,10 +3,9 @@
 #include <numeric>
 #include <vector>
 
-#include "Library/C++/instrumented.h"
 #include "Library/C++/my_algorithm.h"
-#include "Library/C++/table_util.h"
 #include "Library/C++/utils.h"
+#include "Library/C++/table_util.h"
 
 // Tester
 int main() {

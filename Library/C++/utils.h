@@ -16,6 +16,7 @@
 #include<chrono>
 #include<random>
 #include <functional>
+#include "instrumented.h"
 #include "fmt/core.h"
 #include "fmt/format.h"
 #include "fmt/format-inl.h"
@@ -507,3 +508,43 @@ nth_fib(N n, matrix<R>& res)
   res = exp_fact * start_val;
   return res[0][0];
 }
+
+// IO Acceleration
+static const auto io_accelerator = []() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+    return 0;
+}();
+
+// Formatter for instrumented<T>
+template <class T>
+struct fmt::formatter<instrumented<T>> {
+  // Presentation format: 'f' - fixed, 'e' - exponential.
+  char presentation = 'f';
+
+  // Parses format specifications of the form ['f' | 'e'].
+  constexpr auto parse(format_parse_context& ctx) {
+  // auto parse(format_parse_context &ctx) -> decltype(ctx.begin()) // c++11
+    // Parse the presentation format and store it in the formatter:
+    auto it = ctx.begin(), end = ctx.end();
+    if (it != end && (*it == 'f' || *it == 'e')) presentation = *it++;
+
+    // Check if reached the end of the range:
+    if (it != end && *it != '}')
+      throw format_error("invalid format");
+
+    // Return an iterator past the end of the parsed range:
+    return it;
+  }
+
+  // Formats the point p using the parsed format specification (presentation)
+  // stored in this formatter.
+  template <typename FormatContext>
+  auto format(const instrumented<T>& p, FormatContext& ctx) {
+  // auto format(const point &p, FormatContext &ctx) -> decltype(ctx.out()) // c++11
+    // ctx.out() is an output iterator to write to.
+    return format_to(
+        ctx.out(), "{}", p.value);
+  }
+};

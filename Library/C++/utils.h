@@ -27,6 +27,7 @@ using Point = std::pair<int, int>;
 using ns = std::chrono::duration<double, std::nano>;
 using us = std::chrono::duration<double, std::micro>;
 using ms = std::chrono::duration<double, std::milli>;
+using sec = std::chrono::duration<double>;
 using time_diff = std::chrono::duration<double>;
 
 // Concepts - requirements on type

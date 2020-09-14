@@ -42,22 +42,62 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include "Library/C++/utils.h"
+#include <assert.h>
 
 using namespace std;
 
 int solution(vector<int> &A);
 
 int main() {
-    int N;
-    cin >> N;
+    std::mt19937 gen;
+ 
+    // Seed the engine with an unsigned int
+    gen.seed(1);
+    int N = 5000;
     vector<int> A(N);
-    for (int i = 0; i < N; i++) {
-        cin >> A[i];
-    }
-
+    std::generate(A.begin(), A.end(), [&gen]() {return gen()&1;});
+    auto st = GET_HRTIME();
     cout << solution(A) << endl;
+    auto en = GET_HRTIME();
+    fmt::print("Execution Time : {}ms\n", ms(en-st).count());
+    return 0;
+}
+
+vector<int> fibs2n(int n) {
+    vector<int> fibs;
+    int f1 = 1, f2 = 1;
+    while (f2 <= n) {
+        fibs.emplace_back(f2);
+        f2 = f1 + f2;
+        f1 = f2 - f1;
+    }
+    
+    return fibs;
 }
 
 int solution(vector<int> &A) {
-    return 1;
+    if (A.size() == 0) return 1;
+    int N = A.size();
+    vector<int> fibs = fibs2n(N+1);
+    vector<int> leaf_pos;
+    leaf_pos.reserve(N/4);
+    leaf_pos.emplace_back(-1);
+    for (int i = 0; i < N; ++i) if(A[i] == 1) leaf_pos.emplace_back(i);
+    leaf_pos.emplace_back(N);
+    vector<int> dp(N+2, N+1);
+    for (int i = leaf_pos.size()-2; i > 0; --i) dp[leaf_pos[i]] = N+1;
+    dp[N] = 0;
+    dp[N+1] = N + 1;
+    for (int i = int(leaf_pos.size())-1; i > 0; --i) {
+        if (dp[leaf_pos[i]] == N+1) continue;
+        for (int j = 0; j < int(fibs.size()); ++j) {
+            int pos = leaf_pos[i]-fibs[j];
+            if ((pos >= 0 && A[pos])) dp[pos] = min(dp[leaf_pos[i]] + 1, dp[pos]);
+            if (pos == -1) dp[N+1] = min(dp[leaf_pos[i]] + 1, dp[N+1]);
+        }
+    }
+    if (dp[N+1] == N+1) return -1;
+    return dp[N+1];
 }

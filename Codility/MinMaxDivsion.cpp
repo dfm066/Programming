@@ -19,22 +19,28 @@ int isValid(const vector<int> &A, int K, const int &target) {
 int solution(int K, int M, vector<int> &A) {
     int N = A.size();
     int maxel = *max_element(begin(A), end(A));
+
     if (K >= N) return maxel;
-    int tot = accumulate(begin(A), end(A), 0);
-    if (K == 1) return tot;
+    
     for (int i = 1; i < N; ++i) A[i] += A[i-1];
+    
+    int tot = A[N-1];
+    if (K == 1) return tot;
+    
     A.erase(unique(begin(A), end(A)), end(A));
+    
     int low = 1, high = tot, mid = 0;
-    vector<int> valid;
+    int minsum = tot;
     while (low <= high) {
         mid = (low + high) / 2;
         int res = isValid(A, K, mid);
         if (res  >= 0) {
-            valid.emplace_back(mid);
+            minsum = min (minsum, mid);
             high = mid - 1;
         } else {
             low = mid + 1;
         }
     }
-    return *min_element(begin(valid), end(valid));
+    
+    return minsum;
 }
